@@ -19,12 +19,6 @@ const userSchema = new mongoose.Schema({
   department: {
     type: String,
   },
-  orders: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "order",
-    },
-  ],
 });
 
 // static method to login user

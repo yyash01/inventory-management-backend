@@ -6,6 +6,11 @@ const orderSchema = new mongoose.Schema({
     require: true,
     unique: true,
   },
+  userid: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "user",
+    required: true,
+  },
   item_count: {
     type: Number,
     default: 0,
@@ -14,14 +19,17 @@ const orderSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  Order_date: {
+  order_date: {
     type: Date,
     required: true,
   },
   total_cost: {
-    type: Decimal,
-    default: 0.0,
+    type: Number,
+    default: 0,
   },
+  issued_items: [
+    { item_name: String, item_count: Number, description: String },
+  ],
   isVerified: {
     type: Boolean,
     default: false,
