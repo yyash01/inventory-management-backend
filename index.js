@@ -1,11 +1,16 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const connectDB = require("./config/db");
+require("dotenv").config();
 const userRoutes = require("./routes/userRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 const app = express();
 
 app.use(express.json());
+
+//db connection
+connectDB();
 
 //routes
 
@@ -17,17 +22,6 @@ app.get("/", (req, res) => {
   res.send("Page for Login the invenotry-management-system");
 });
 
-//db connection
-const dbURI =
-  "mongodb+srv://lnmiit:iamyash@inventory-management-ba.dcfmo.mongodb.net/inventory-management-backend";
-mongoose
-  .connect(dbURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then((result) =>
-    app.listen(3000, function () {
-      console.log("Server is running on Port 3000");
-    })
-  )
-  .catch((err) => console.log(err));
+app.listen(4000, () => {
+  console.log("Server Started in port 4000");
+});
