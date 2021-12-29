@@ -4,7 +4,7 @@ const connectDB = require("./config/db");
 require("dotenv").config();
 const userRoutes = require("./routes/userRoutes");
 const adminRoutes = require("./routes/adminRoutes");
-const orderRoutes = require("./routes/orderRoutes");
+const authRoutes = require("./routes/authRoutes");
 const app = express();
 
 app.use(express.json());
@@ -14,12 +14,12 @@ connectDB();
 
 //routes
 
+app.use("/auth", authRoutes);
 app.use("/user", userRoutes);
 app.use("/admin", adminRoutes);
-app.use("/order", orderRoutes);
 
 app.get("/", (req, res) => {
-  res.send("Page for Login the invenotry-management-system");
+  res.send("HomePage of the invenotry-management-system");
 });
 
 app.listen(4000, () => {
